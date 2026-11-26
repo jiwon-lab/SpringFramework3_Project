@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
+         http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <!-- Maven POM 모델 버전 -->
+    <modelVersion>4.0.0</modelVersion>
+
+    <!-- ============================== -->
+    <!-- 1. 프로젝트 기본 정보 -->
+    <!-- ============================== -->
+
+    <groupId>mylab</groupId>
+    <artifactId>SpringFramework3_Project</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <name>SpringFramework3_Project</name>
+
+    <!-- ============================== -->
+    <!-- 2. 프로젝트 환경 및 버전 설정 -->
+    <!-- ============================== -->
+
+    <properties>
+
+    <!-- 한글 인코딩 설정 -->
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+    <!-- Java 11 컴파일 환경 -->
+    <maven.compiler.release>11</maven.compiler.release>
+
+    <!-- Java 11과 호환되는 Spring Framework -->
+    <spring.version>5.3.39</spring.version>
+
+    <!-- JUnit 5 테스트 프레임워크 -->
+    <junit.version>5.11.0</junit.version>
+
+</properties>
+    <!-- ============================== -->
+    <!-- 3. 의존성 버전 관리 -->
+    <!-- ============================== -->
+
+    <dependencyManagement>
+        <dependencies>
+
+            <!-- JUnit BOM (Bill of Materials) -->
+            <!-- JUnit 관련 라이브러리의 버전을 통합 관리 -->
+            <!-- 이 설정만으로 라이브러리가 추가되는 것은 아님 -->
+            <dependency>
+                <groupId>org.junit</groupId>
+                <artifactId>junit-bom</artifactId>
+                <version>${junit.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+
+        </dependencies>
+    </dependencyManagement>
+
+    <!-- ============================== -->
+    <!-- 4. 프로젝트 의존성 (Dependencies) -->
+    <!-- ============================== -->
+
+    <dependencies>
+
+        <!-- Spring Context -->
+        <!-- Spring Container 및 Bean 관리 기능 제공 -->
+        <!-- @Configuration, @Bean, @Autowired 사용 -->
+        <!-- Dependency Injection(DI)에 필요한 핵심 라이브러리 -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+
+        <!-- Spring Test -->
+        <!-- 테스트 환경에서 Spring Container를 로드 -->
+        <!-- @SpringJUnitConfig, @ContextConfiguration 사용 -->
+        <!-- NotificationConfigTest 작성에 필요 -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-test</artifactId>
+            <version>${spring.version}</version>
+            <scope>test</scope>
+        </dependency>
+
+        <!-- JUnit 5 -->
+        <!-- 테스트 작성 및 실행에 필요한 라이브러리 -->
+        <!-- @Test, assertNotNull(), assertEquals() 사용 -->
+        <!-- API, Params, Engine 포함 -->
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+    </dependencies>
+
+    <!-- ============================== -->
+    <!-- 5. Maven 빌드 설정 -->
+    <!-- ============================== -->
+
+    <build>
+
+        <!-- Maven 플러그인의 버전을 관리 -->
+        <pluginManagement>
+            <plugins>
+
+                <!-- 기존 빌드 결과물(target 폴더) 삭제 -->
+                <!-- mvn clean -->
+                <plugin>
+                    <artifactId>maven-clean-plugin</artifactId>
+                    <version>3.4.0</version>
+                </plugin>
+
+                <!-- 리소스 파일 복사 및 관리 -->
+                <!-- src/main/resources 등의 파일 처리 -->
+                <plugin>
+                    <artifactId>maven-resources-plugin</artifactId>
+                    <version>3.3.1</version>
+                </plugin>
+
+                <!-- Java 소스 코드를 바이트코드로 컴파일 -->
+                <!-- .java → .class -->
+                <plugin>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <version>3.13.0</version>
+                </plugin>
+
+                <!-- JUnit 테스트 실행 -->
+                <!-- mvn test -->
+                <plugin>
+                    <artifactId>maven-surefire-plugin</artifactId>
+                    <version>3.3.0</version>
+                </plugin>
+
+                <!-- 컴파일된 결과물을 JAR 파일로 패키징 -->
+                <!-- mvn package -->
+                <plugin>
+                    <artifactId>maven-jar-plugin</artifactId>
+                    <version>3.4.2</version>
+                </plugin>
+
+                <!-- 빌드 결과물을 로컬 Maven 저장소에 설치 -->
+                <!-- mvn install -->
+                <plugin>
+                    <artifactId>maven-install-plugin</artifactId>
+                    <version>3.1.2</version>
+                </plugin>
+
+                <!-- 빌드 결과물을 원격 Maven 저장소에 배포 -->
+                <!-- mvn deploy -->
+                <plugin>
+                    <artifactId>maven-deploy-plugin</artifactId>
+                    <version>3.1.2</version>
+                </plugin>
+
+                <!-- 프로젝트 문서 사이트 생성 -->
+                <!-- mvn site -->
+                <plugin>
+                    <artifactId>maven-site-plugin</artifactId>
+                    <version>3.12.1</version>
+                </plugin>
+
+                <!-- 프로젝트 정보 및 보고서 생성 -->
+                <plugin>
+                    <artifactId>maven-project-info-reports-plugin</artifactId>
+                    <version>3.6.1</version>
+                </plugin>
+
+            </plugins>
+        </pluginManagement>
+
+    </build>
+
+</project>

@@ -1,0 +1,19 @@
+# Maven build
+target/
+
+# STS / Eclipse
+.metadata/
+.settings/
+.classpath
+.project
+.springBeans
+
+# IntelliJ
+.idea/
+*.iml
+
+# macOS
+.DS_Store
+
+# Java
+*.class
